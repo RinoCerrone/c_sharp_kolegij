@@ -1,4 +1,5 @@
-﻿
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 namespace c_sharp_kolegij
 {
     partial class Form1
@@ -33,16 +34,17 @@ namespace c_sharp_kolegij
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 450);
+            this.ClientSize = new System.Drawing.Size(662, 301);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        
+
+        
     }
 }
 
