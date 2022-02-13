@@ -37,6 +37,7 @@ namespace c_sharp_kolegij
             this.ClientSize = new System.Drawing.Size(662, 301);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Rectangle";
             this.ResumeLayout(false);
 
         }
@@ -44,7 +45,7 @@ namespace c_sharp_kolegij
         #endregion
         
 
-        
+
     }
 }
 

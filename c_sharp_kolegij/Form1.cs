@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Drawing.Drawing2D;
 namespace c_sharp_kolegij
 {
     public partial class Form1 : Form
@@ -16,42 +16,50 @@ namespace c_sharp_kolegij
         Point LocationXY;
         Point LocationX1Y1;
         bool IsMouseDown = false;
+        List<Rectangle> rectangles = new List<Rectangle>();
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        
+        protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
             IsMouseDown = true;
             LocationXY = e.Location;
         }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (IsMouseDown == true) 
+            base.OnMouseMove(e);
+            if (IsMouseDown == true)
             {
                 LocationX1Y1 = e.Location;
-                Refresh();
+                Invalidate();
             }
         }
-
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        protected override void OnMouseUp(MouseEventArgs e)
         {
+            base.OnMouseUp(e);
             if (IsMouseDown == true)
             {
                 LocationX1Y1 = e.Location;
                 IsMouseDown = false;
+                rectangles.Add(GetRect());
             }
-        }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        }
+        protected override void OnPaint(PaintEventArgs e)
         {
-            if (rect != null)
-            {
-                e.Graphics.DrawRectangle(Pens.Azure, GetRect());
+            base.OnPaint(e);
+            //foreach po svim prakoutnicima i iscrtati ih
+
+            foreach (Rectangle item in rectangles) {
+                if (rect != Rectangle.Empty)
+                {
+                    e.Graphics.DrawRectangle(Pens.Red, GetRect());
+                }
             }
-                
+            
         }
 
 
@@ -66,6 +74,8 @@ namespace c_sharp_kolegij
 
 
         }
+
+        
     }
 }
 
