@@ -12,7 +12,7 @@ namespace c_sharp_kolegij
 {
     public partial class Form1 : Form
     {
-        Rectangle rect;
+        
         Point LocationXY;
         Point LocationX1Y1;
         bool IsMouseDown = false;
@@ -63,11 +63,12 @@ namespace c_sharp_kolegij
         {
             base.OnPaint(e);
             //foreach po svim prakoutnicima i iscrtati ih
-
+            //Rectangle current = GetRect();
+            e.Graphics.DrawRectangle(Pens.DarkRed, GetRect());
             foreach (Rectangle item in rectangles) {
-                if (rect != Rectangle.Empty)
+                if (item != Rectangle.Empty)
                 {
-                    e.Graphics.DrawRectangle(Pens.DarkRed,GetRect());
+                    e.Graphics.DrawRectangle(Pens.DarkRed,item);
                 }
             }
             
@@ -77,7 +78,8 @@ namespace c_sharp_kolegij
         
         private Rectangle GetRect()
         {
-            rect = new Rectangle();
+            
+            var rect = new Rectangle();
             rect.X = Math.Min(LocationXY.X, LocationX1Y1.X);
             rect.Y = Math.Min(LocationXY.Y, LocationX1Y1.Y);
             rect.Width = Math.Abs(LocationXY.X - LocationX1Y1.X);
