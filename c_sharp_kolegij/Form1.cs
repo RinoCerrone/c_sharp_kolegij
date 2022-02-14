@@ -17,6 +17,7 @@ namespace c_sharp_kolegij
         Point LocationX1Y1;
         bool IsMouseDown = false;
         List<Rectangle> rectangles = new List<Rectangle>();
+        float zbroj = 0.00F;
         public Form1()
         {
             InitializeComponent();
@@ -45,7 +46,17 @@ namespace c_sharp_kolegij
                 LocationX1Y1 = e.Location;
                 IsMouseDown = false;
                 rectangles.Add(GetRect());
+                
             }
+            foreach (Rectangle item in rectangles)
+            {
+                float area;
+                
+                area = GetRect().Height * GetRect().Width;
+                zbroj += area;
+                textBox1.Text = (zbroj.ToString());
+            }
+            
 
         }
         protected override void OnPaint(PaintEventArgs e)
@@ -56,13 +67,14 @@ namespace c_sharp_kolegij
             foreach (Rectangle item in rectangles) {
                 if (rect != Rectangle.Empty)
                 {
-                    e.Graphics.DrawRectangle(Pens.Red, GetRect());
+                    e.Graphics.DrawRectangle(Pens.DarkRed,GetRect());
                 }
             }
             
+            
         }
 
-
+        
         private Rectangle GetRect()
         {
             rect = new Rectangle();
@@ -70,6 +82,7 @@ namespace c_sharp_kolegij
             rect.Y = Math.Min(LocationXY.Y, LocationX1Y1.Y);
             rect.Width = Math.Abs(LocationXY.X - LocationX1Y1.X);
             rect.Height = Math.Abs(LocationXY.Y - LocationX1Y1.Y);
+
             return rect;
 
 
